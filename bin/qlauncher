@@ -41,7 +41,8 @@ except RuntimeError:
 
 def main(*argv):
     job_time = datetime.datetime.utcnow()
-    job_name = "qlauncher-" + argv[1] + "_" + job_time.isoformat()
+    job_time_str = job_time.isoformat().replace(":", ".")
+    job_name = "qlauncher-" + argv[1] + "_" + job_time_str
 
     s = drmaa.Session()
     s.initialize()
