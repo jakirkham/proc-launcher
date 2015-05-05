@@ -8,6 +8,7 @@ __author__ = "John Kirkham <kirkhamj@janelia.hhmi.org>"
 __date__ = "$May 05, 2015 13:31:12 EDT$"
 
 
+import datetime
 import os
 import logging
 
@@ -39,7 +40,8 @@ except RuntimeError:
 
 
 def main(*argv):
-    job_name = "qlauncher-" + argv[1]
+    job_time = datetime.datetime.utcnow()
+    job_name = "qlauncher-" + argv[1] + "_" + job_time.isoformat()
 
     s = drmaa.Session()
     s.initialize()
