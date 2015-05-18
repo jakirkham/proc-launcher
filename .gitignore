@@ -1,2 +1,5 @@
 # Ignore compiled python files.
 *.py[cod]
+
+# Ignore project files.
+.idea/
