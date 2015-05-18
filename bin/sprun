@@ -27,8 +27,7 @@ except ImportError:
     )
     raise
 except RuntimeError:
-    # The drmaa library was not specified, but python-drmaa is
-    # installed.
+    # The drmaa library was not specified, but python-drmaa is installed.
     drmaa_logger.error(
         "Was able to import drmaa. " +
         "However, the drmaa library could not be found. Please " +
