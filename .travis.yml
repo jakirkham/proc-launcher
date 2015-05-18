@@ -1,0 +1,101 @@
+language: python
+python:
+   - "2.7"
+before_install:
+   # Get the tag if it wasn't provided. Travis doesn't provide this if it isn't a tagged build.
+   - if [ -z $TRAVIS_TAG ]; then TRAVIS_TAG=`git tag --contains` ; fi
+   - echo $TRAVIS_TAG
+   # Move out of git directory to build root.
+   - deactivate
+   - cd ../..
+   - pwd
+install:
+   # Download and configure conda.
+   - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+   - bash miniconda.sh -b -p $HOME/miniconda
+   - export PATH="$HOME/miniconda/bin:$PATH"
+   - conda config --set always_yes yes
+   - conda config --add channels http://conda.binstar.org/jakirkham
+   - source activate root
+   # Install basic conda dependencies.
+   - conda update conda
+   - conda install conda-build
+   # Build the conda package for splauncher.
+   - cd $TRAVIS_REPO_SLUG
+   - VERSION=`python setup.py --version`
+   - echo $VERSION
+   - python setup.py bdist_conda
+   # Setup environment for splauncher and install it with all dependencies.
+   - conda create -n splauncher-env python=$TRAVIS_PYTHON_VERSION
+   - source activate splauncher-env
+   - conda install --use-local splauncher==$VERSION
+   # Install DRMAA with Python support.
+   - .travis_scripts/install_sge.sh
+   - export SGE_ROOT=/var/lib/gridengine
+   - export SGE_CELL=default
+   - export DRMAA_LIBRARY_PATH=/usr/lib/libdrmaa.so.1.0
+   - pip install drmaa
+   # Install sphinx 1.3 and friends to build documentation.
+   # Install coverage and coveralls to generate and submit test coverage results for coveralls.io.
+   # Also, install docstring-coverage to get information about documentation coverage.
+   - pip install "sphinx>=1.3,<2"
+   - pip install cloud_sptheme
+   - pip install nose-timer
+   - pip install coverage
+   - pip install docstring-coverage
+   - pip install python-coveralls
+   # Clean up downloads as there are quite a few and they waste space/memory.
+   - sudo apt-get clean
+   - conda clean -t
+   - rm -rfv $HOME/.cache/pip
+script:
+   # Run tests. Skip 3D tests as they take too long (~1hr).
+   - python setup.py nosetests --with-timer
+   # Build documentation.
+   - python setup.py build_sphinx
+   # Get info on docstring coverage.
+   - docstring-coverage splauncher | tee .docstring-coverage
+after_success:
+   # Submit results to coveralls.io.
+   - coveralls
+   # Check to see if this is the right branch to build documentation from.
+   - if [ $TRAVIS_PULL_REQUEST != "false" ] || [ $TRAVIS_REPO_SLUG != "jakirkham/splauncher" ] || [ $TRAVIS_BRANCH != "master" ]; then exit 0 ; fi
+   # Save documentation and documentation coverage statistics.
+   - mv build/sphinx/html ../splauncher-git-docs
+   - mv .docstring-coverage ../splauncher-git-docs
+   # Update credentials
+   - git config --global user.name "Travis CI"
+   - git config --global user.email "noreply@travis-ci.org"
+   # Get current pages. Unfortunately, `git fetch` does not work here.
+   - git remote set-url origin "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}"
+   - git checkout --orphan gh-pages
+   - git pull origin gh-pages
+   - git branch -v
+   # Save important git files.
+   - mv .git ../splauncher-git-docs
+   - mv .nojekyll ../splauncher-git-docs
+   # Replace old documentation with new documentation.
+   - rm -rf * .*
+   - mv ../splauncher-git-docs/.nojekyll .
+   - mv ../splauncher-git-docs/.git .
+   - mv ../splauncher-git-docs/.docstring-coverage .
+   - mv ../splauncher-git-docs/* .
+   - rm -rf ../splauncher-git-docs
+   # Commit changes and push. Reference commit used and tag if relevant.
+   - git add -A
+   - if [ -z $TRAVIS_TAG ]; then git commit -m "Rebuilt documentation for commit (${TRAVIS_COMMIT})." --allow-empty ; else git commit -m "Rebuilt documentation for commit (${TRAVIS_COMMIT}) and tag (${TRAVIS_TAG})." --allow-empty ; fi
+   - git push origin gh-pages
+   # Check to see if this is a release. If so, create and upload binaries.
+   - if [ -z $TRAVIS_TAG ]; then exit 0 ; fi
+   - git checkout $TRAVIS_TAG
+   - source activate root
+   - conda install binstar
+   - cd $HOME/miniconda/conda-bld/
+   - conda convert -p osx-64 linux-64/splauncher*
+   - binstar -t ${BS_TOKEN} upload linux-64/splauncher*
+   - binstar -t ${BS_TOKEN} upload osx-64/splauncher*
+env:
+   global:
+       secure: NkywIa+AzkNWMIyEY8qqYgk5aJtK7iejSXWj+dlsNg5noQwUj7Rf3RJoAn7qMaSrxbDYYBEg1icE7cYHbl59VKCTU650uLzRO1i77BJfYDA2rsGpMv+Gt2Z+APt//YmTq/TERysH+cy+RZHvbi0fZkkt1cohqOI8gWOECIUYH5I=
+# Use container format for TravisCI to avoid termination due to insufficient resources.
+#sudo: false
