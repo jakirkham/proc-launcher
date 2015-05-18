@@ -27,3 +27,14 @@ of |drmaa-python|_.
 .. _setuptools: http://pythonhosted.org/setuptools/
 .. |sphinx| replace:: ``sphinx``
 .. _sphinx: http://sphinx-doc.org/
+
+
+Installation
+------------
+
+Assuming the proper prerequisites, installation can be done the standard python
+way (as seen below).
+
+.. code-block:: sh
+
+    python setup.py install
