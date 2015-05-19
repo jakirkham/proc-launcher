@@ -40,12 +40,12 @@ class TestCore(object):
 
         with open(filenames[0], "r") as f:
             s = f.read().strip()
-            print(s)
+            print("File \"%s\" contains \"%s\"." % (f.name, s))
             assert s == ""
 
         with open(filenames[1], "r") as f:
             s = f.read().strip()
-            print(s)
+            print("File \"%s\" contains \"%s\"." % (f.name, s))
             assert s == "output"
 
     def test_main_1(self):
@@ -62,10 +62,10 @@ class TestCore(object):
 
         with open(filenames[0], "r") as f:
             s = f.read().strip()
-            print(s)
+            print("File \"%s\" contains \"%s\"." % (f.name, s))
             assert s == "error"
 
         with open(filenames[1], "r") as f:
             s = f.read().strip()
-            print(s)
+            print("File \"%s\" contains \"%s\"." % (f.name, s))
             assert s == ""
