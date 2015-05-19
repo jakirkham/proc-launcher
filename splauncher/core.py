@@ -59,7 +59,7 @@ def main(*argv):
     s.exit()
 
     print(
-        "Launched job as \"%s\" with process ID \"%s\"" % (
+        "Launched job as \"%s\" with process ID \"%s\"." % (
             job_name, process_id
         )
     )
