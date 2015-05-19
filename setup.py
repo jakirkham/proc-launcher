@@ -11,7 +11,14 @@ import shutil
 import sys
 
 from setuptools import setup, find_packages
+import versioneer
 
+
+versioneer.VCS = "git"
+versioneer.versionfile_source = "splauncher/_version.py"
+versioneer.versionfile_build = None
+versioneer.tag_prefix = "v"
+versioneer.parentdir_prefix = "splauncher-"
 
 build_requires = []
 install_requires = []
@@ -74,7 +81,7 @@ elif sys.argv[1] == "clean":
 
 setup(
     name="splauncher",
-    version="",
+    version=versioneer.get_version(),
     description="A simple subprocess launcher with optional DRMAA support.",
     url="https://github.com/jakirkham/splauncher",
     license="BSD",
@@ -82,6 +89,7 @@ setup(
     author_email="kirkhamj@janelia.hhmi.org",
     scripts=glob("bin/*"),
     packages=find_packages(exclude=["tests*"]),
+    cmdclass=versioneer.get_cmdclass(),
     build_requires=build_requires,
     install_requires=install_requires,
     tests_require=tests_require,
