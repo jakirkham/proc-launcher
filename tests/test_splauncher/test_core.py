@@ -8,7 +8,6 @@ __date__ = "$May 18, 2015 22:08:21 EDT$"
 import os
 import shutil
 import tempfile
-import time
 
 from splauncher.core import main
 
