@@ -61,7 +61,7 @@ def main(*argv):
     s.exit()
 
     print(
-        "In session \"%s\", launched job as \"%s\" with process ID \"%s\"." % (
+        "From context \"%s\" launched job \"%s\" with process ID \"%s\"." % (
             session_name, job_name, process_id
         )
     )
