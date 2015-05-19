@@ -56,7 +56,7 @@ copyright = u'2015, John Kirkham <kirkhamj@janelia.hhmi.org>'
 # built documents.
 #
 # The full version, including alpha/beta/rc tags.
-from nanshe import __version__
+from splauncher import __version__
 release = __version__
 del __version__
 # The short X.Y version.
