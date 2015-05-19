@@ -9,3 +9,9 @@ docs/_build
 docs/*.rst
 !docs/index.rst
 !docs/readme.rst
+
+# Ignore build generated files.
+MANIFEST
+build/
+dist/
+splauncher.egg-info/
