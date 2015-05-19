@@ -7,6 +7,7 @@ __date__ = "$May 18, 2015 22:08:21 EDT$"
 
 import os
 import shutil
+import subprocess
 import tempfile
 import time
 
@@ -35,6 +36,8 @@ class TestCore(object):
         for each_filename in os.listdir(self.tempdir):
             filenames.append(os.path.join(self.tempdir, each_filename))
 
+        subprocess.call(["qstat"])
+
         assert ".err" in filenames[0]
         assert ".out" in filenames[1]
 
@@ -56,6 +59,8 @@ class TestCore(object):
         filenames = []
         for each_filename in os.listdir(self.tempdir):
             filenames.append(os.path.join(self.tempdir, each_filename))
+
+        subprocess.call(["qstat"])
 
         assert ".err" in filenames[0]
         assert ".out" in filenames[1]
