@@ -21,29 +21,31 @@ class TestCore(object):
     def test_main_0(self):
         main("echo", "output")
 
-        for each_filenames in os.listdir(self.tempdir):
-            each_filenames = os.path.join(self.tempdir, each_filenames)
+        filenames = []
+        for each_filename in os.listdir(self.tempdir):
+            filenames.append(os.path.join(self.tempdir, each_filename))
 
-        assert ".err" in each_filenames[0]
-        assert ".out" in each_filenames[1]
+        assert ".err" in filenames[0]
+        assert ".out" in filenames[1]
 
-        with open(each_filenames[0], "r") as f:
+        with open(filenames[0], "r") as f:
             assert f.read() == ""
 
-        with open(each_filenames[1], "r") as f:
+        with open(filenames[1], "r") as f:
             assert f.read() == "output"
 
     def test_main_1(self):
         main("echo", "error", "1>&2")
 
-        for each_filenames in os.listdir(self.tempdir):
-            each_filenames = os.path.join(self.tempdir, each_filenames)
+        filenames = []
+        for each_filename in os.listdir(self.tempdir):
+            filenames.append(os.path.join(self.tempdir, each_filename))
 
-        assert ".err" in each_filenames[0]
-        assert ".out" in each_filenames[1]
+        assert ".err" in filenames[0]
+        assert ".out" in filenames[1]
 
-        with open(each_filenames[0], "r") as f:
+        with open(filenames[0], "r") as f:
             assert f.read() == "error"
 
-        with open(each_filenames[1], "r") as f:
+        with open(filenames[1], "r") as f:
             assert f.read() == ""
