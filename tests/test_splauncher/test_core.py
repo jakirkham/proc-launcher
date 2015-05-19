@@ -87,6 +87,9 @@ class TestCore(object):
         print(process.stdout.read(), file=sys.stdout)
         print(process.stderr.read(), file=sys.stderr)
 
+        assert ".err" in filenames[0]
+        assert ".out" in filenames[1]
+
         with open(filenames[0], "r") as f:
             s = f.read().strip()
             print("File \"%s\" contains \"%s\"." % (f.name, s))
