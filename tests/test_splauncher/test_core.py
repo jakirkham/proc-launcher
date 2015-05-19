@@ -37,7 +37,7 @@ class TestCore(object):
             "print(\"output\", file=sys.stdout)"
         )
 
-        time.sleep(50.0)
+        time.sleep(10.0)
 
         filenames = []
         for each_filename in os.listdir(self.tempdir):
@@ -65,7 +65,7 @@ class TestCore(object):
             "print(\"error\", file=sys.stderr)"
         )
 
-        time.sleep(50.0)
+        time.sleep(10.0)
 
         filenames = []
         for each_filename in os.listdir(self.tempdir):
