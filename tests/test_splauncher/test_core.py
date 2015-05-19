@@ -39,7 +39,7 @@ class TestCore(object):
             assert f.read() == ""
 
         with open(filenames[1], "r") as f:
-            assert f.read() == "output"
+            assert f.read().strip() == "output"
 
     def test_main_1(self):
         main("echo", "error", "1>&2")
@@ -54,7 +54,7 @@ class TestCore(object):
         assert ".out" in filenames[1]
 
         with open(filenames[0], "r") as f:
-            assert f.read() == "error"
+            assert f.read().strip() == "error"
 
         with open(filenames[1], "r") as f:
             assert f.read() == ""
