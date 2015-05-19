@@ -22,6 +22,8 @@ class TestCore(object):
         self.tempdir = tempfile.mkdtemp()
         os.chdir(self.tempdir)
 
+        print("tempdir = \"%s\"" % self.tempdir)
+
     def teardown(self):
         os.chdir(self.cwd)
         shutil.rmtree(self.tempdir)
