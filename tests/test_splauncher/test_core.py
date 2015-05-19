@@ -26,7 +26,7 @@ class TestCore(object):
     def test_main_0(self):
         main("echo", "output")
 
-        time.sleep(60.0)
+        time.sleep(30.0)
 
         filenames = []
         for each_filename in os.listdir(self.tempdir):
@@ -44,7 +44,7 @@ class TestCore(object):
     def test_main_1(self):
         main("echo", "error", "1>&2")
 
-        time.sleep(60.0)
+        time.sleep(30.0)
 
         filenames = []
         for each_filename in os.listdir(self.tempdir):
