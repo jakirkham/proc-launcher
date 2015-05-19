@@ -39,6 +39,7 @@ class TestCore(object):
 
         while len(os.listdir(self.tempdir)) < 2:
            time.sleep(1)
+        time.sleep(1)
 
         filenames = []
         for each_filename in os.listdir(self.tempdir):
@@ -68,6 +69,7 @@ class TestCore(object):
 
         while len(os.listdir(self.tempdir)) < 2:
            time.sleep(1)
+        time.sleep(1)
 
         filenames = []
         for each_filename in os.listdir(self.tempdir):
