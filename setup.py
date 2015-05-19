@@ -73,10 +73,10 @@ elif sys.argv[1] == "clean":
             print("'build/sphinx' does not exist -- can't clean it")
 
 setup(
-    name="subprocess-launcher",
+    name="splauncher",
     version="",
     description="A simple subprocess launcher with optional DRMAA support.",
-    url="https://github.com/jakirkham/subprocess-launcher",
+    url="https://github.com/jakirkham/splauncher",
     license="BSD",
     author="John Kirkham",
     author_email="kirkhamj@janelia.hhmi.org",

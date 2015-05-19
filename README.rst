@@ -1,5 +1,5 @@
-subprocess-launcher
-===================
+splauncher
+==========
 
 
 Motivation
