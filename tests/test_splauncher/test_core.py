@@ -1,3 +1,6 @@
+from __future__ import print_function
+
+
 __author__ = "John Kirkham <kirkhamj@janelia.hhmi.org>"
 __date__ = "$May 18, 2015 22:08:21 EDT$"
 
@@ -36,10 +39,14 @@ class TestCore(object):
         assert ".out" in filenames[1]
 
         with open(filenames[0], "r") as f:
-            assert f.read() == ""
+            s = f.read().strip()
+            print(s)
+            assert s == ""
 
         with open(filenames[1], "r") as f:
-            assert f.read().strip() == "output"
+            s = f.read().strip()
+            print(s)
+            assert s == "output"
 
     def test_main_1(self):
         main("echo", "error", "1>&2")
@@ -54,7 +61,11 @@ class TestCore(object):
         assert ".out" in filenames[1]
 
         with open(filenames[0], "r") as f:
-            assert f.read().strip() == "error"
+            s = f.read().strip()
+            print(s)
+            assert s == "error"
 
         with open(filenames[1], "r") as f:
-            assert f.read() == ""
+            s = f.read().strip()
+            print(s)
+            assert s == ""
