@@ -37,7 +37,7 @@ except RuntimeError:
 def main(*argv):
     job_time = datetime.datetime.utcnow()
     job_time_str = job_time.isoformat().replace(":", ".")
-    job_name = "sprun-" + argv[1] + "_" + job_time_str
+    job_name = "sprun_" + argv[1].replace("/", "-") + "_" + job_time_str
 
     s = drmaa.Session()
     s.initialize()
