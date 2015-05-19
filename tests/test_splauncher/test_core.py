@@ -11,12 +11,16 @@ from splauncher.core import main
 
 class TestCore(object):
     def setup(self):
+        self.cwd = os.getcwd()
         self.tempdir = ""
         self.tempdir = tempfile.mkdtemp()
+        os.chdir(self.tempdir)
 
     def teardown(self):
+        os.chdir(self.cwd)
         shutil.rmtree(self.tempdir)
         self.tempdir = ""
+        self.cwd = ""
 
     def test_main_0(self):
         main("echo", "output")
