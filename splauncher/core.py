@@ -42,6 +42,8 @@ def main(*argv):
     s = drmaa.Session()
     s.initialize()
 
+    session_name = s.contact
+
     job_template = s.createJobTemplate()
     job_template.jobName = job_name
     job_template.remoteCommand = argv[1]
@@ -59,8 +61,8 @@ def main(*argv):
     s.exit()
 
     print(
-        "Launched job as \"%s\" with process ID \"%s\"." % (
-            job_name, process_id
+        "In session \"%s\", launched job as \"%s\" with process ID \"%s\"." % (
+            session_name, job_name, process_id
         )
     )
 
