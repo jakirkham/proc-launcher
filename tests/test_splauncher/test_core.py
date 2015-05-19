@@ -33,7 +33,6 @@ class TestCore(object):
             filenames.append(os.path.join(self.tempdir, each_filename))
 
         print os.listdir(os.path.expanduser("~"))
-        print os.listdir("/")
 
         assert ".err" in filenames[0]
         assert ".out" in filenames[1]
@@ -54,7 +53,6 @@ class TestCore(object):
             filenames.append(os.path.join(self.tempdir, each_filename))
 
         print os.listdir(os.path.expanduser("~"))
-        print os.listdir("/")
 
         assert ".err" in filenames[0]
         assert ".out" in filenames[1]
