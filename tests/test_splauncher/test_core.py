@@ -31,7 +31,13 @@ class TestCore(object):
         self.cwd = ""
 
     def test_main_0(self):
-        main("echo", "output")
+        main(
+            "python",
+            "-c",
+            "from __future__ import print_function;" +
+            "import sys;" +
+            "print(\"output\", file=sys.stdout)"
+        )
 
         time.sleep(50.0)
 
@@ -60,7 +66,13 @@ class TestCore(object):
             assert s == "output"
 
     def test_main_1(self):
-        main("echo", "error", "1>&2")
+        main(
+            "python",
+            "-c",
+            "from __future__ import print_function;" +
+            "import sys;" +
+            "print(\"error\", file=sys.stderr)"
+        )
 
         time.sleep(50.0)
 
