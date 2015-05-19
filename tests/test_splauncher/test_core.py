@@ -37,8 +37,6 @@ class TestCore(object):
             "print(\"output\", file=sys.stdout)"
         )
 
-        time.sleep(10.0)
-
         filenames = []
         for each_filename in os.listdir(self.tempdir):
             filenames.append(os.path.join(self.tempdir, each_filename))
@@ -64,8 +62,6 @@ class TestCore(object):
             "import sys;" +
             "print(\"error\", file=sys.stderr)"
         )
-
-        time.sleep(10.0)
 
         filenames = []
         for each_filename in os.listdir(self.tempdir):
