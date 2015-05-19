@@ -5,6 +5,7 @@ __date__ = "$May 18, 2015 22:08:21 EDT$"
 import os
 import shutil
 import tempfile
+import time
 
 from splauncher.core import main
 
@@ -25,6 +26,8 @@ class TestCore(object):
     def test_main_0(self):
         main("echo", "output")
 
+        time.sleep(1.0)
+
         filenames = []
         for each_filename in os.listdir(self.tempdir):
             filenames.append(os.path.join(self.tempdir, each_filename))
@@ -40,6 +43,8 @@ class TestCore(object):
 
     def test_main_1(self):
         main("echo", "error", "1>&2")
+
+        time.sleep(1.0)
 
         filenames = []
         for each_filename in os.listdir(self.tempdir):
