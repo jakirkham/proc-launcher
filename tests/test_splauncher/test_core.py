@@ -44,6 +44,7 @@ class TestCore(object):
         filenames = []
         for each_filename in os.listdir(self.tempdir):
             filenames.append(os.path.join(self.tempdir, each_filename))
+        filenames.sort()
 
         assert ".err" in filenames[0]
         assert ".out" in filenames[1]
@@ -74,6 +75,7 @@ class TestCore(object):
         filenames = []
         for each_filename in os.listdir(self.tempdir):
             filenames.append(os.path.join(self.tempdir, each_filename))
+        filenames.sort()
 
         assert ".err" in filenames[0]
         assert ".out" in filenames[1]
