@@ -31,7 +31,7 @@ class TestCore(object):
         self.cwd = ""
 
     def test_main_0(self):
-        main(
+        main("",
             "python",
             "-c",
             "from __future__ import print_function;" +
@@ -66,7 +66,7 @@ class TestCore(object):
             assert s == "output"
 
     def test_main_1(self):
-        main(
+        main("",
             "python",
             "-c",
             "from __future__ import print_function;" +
