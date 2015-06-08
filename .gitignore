@@ -25,6 +25,7 @@ docs/*.rst
 
 # Ignore build generated files.
 MANIFEST
+.eggs/
 build/
 dist/
 splauncher.egg-info/
