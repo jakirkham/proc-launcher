@@ -1,3 +1,7 @@
+|Build Status| |Coverage Status| |Code Health| |License| |Documentation| |Binstar Release|
+
+--------------
+
 splauncher
 ==========
 
@@ -38,3 +42,17 @@ way (as seen below).
 .. code-block:: sh
 
     python setup.py install
+
+
+.. |Build Status| image:: https://travis-ci.org/jakirkham/splauncher.svg?branch=master
+   :target: https://travis-ci.org/jakirkham/splauncher
+.. |Coverage Status| image:: https://coveralls.io/repos/jakirkham/splauncher/badge.svg?branch=master
+   :target: https://coveralls.io/r/jakirkham/splauncher?branch=master
+.. |Code Health| image:: https://landscape.io/github/jakirkham/splauncher/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/jakirkham/splauncher/master
+.. |License| image:: http://img.shields.io/badge/license-BSD-3-Clause-blue.svg
+   :target: http://opensource.org/licenses/BSD-3-Clause
+.. |Documentation| image:: https://img.shields.io/badge/license-BSD%203--Clause-blue.svg
+   :target: http://jakirkham.github.io/splauncher/
+.. |Binstar Release| image:: https://binstar.org/jakirkham/splauncher/badges/version.svg
+   :target: https://binstar.org/jakirkham/splauncher
