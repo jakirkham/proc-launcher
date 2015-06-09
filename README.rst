@@ -52,7 +52,7 @@ way (as seen below).
    :target: https://landscape.io/github/jakirkham/splauncher/master
 .. |License| image:: https://img.shields.io/badge/license-BSD%203--Clause-blue.svg
    :target: http://opensource.org/licenses/BSD-3-Clause
-.. |Documentation| image:: https://img.shields.io/badge/license-BSD%203--Clause-blue.svg
+.. |Documentation| image:: https://img.shields.io/badge/docs-current-9F21E9.svg
    :target: http://jakirkham.github.io/splauncher/
 .. |Binstar Release| image:: https://binstar.org/jakirkham/splauncher/badges/version.svg
    :target: https://binstar.org/jakirkham/splauncher
