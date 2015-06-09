@@ -1,0 +1,15 @@
+splauncher package
+==================
+
+.. automodule:: splauncher
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   splauncher.core
+

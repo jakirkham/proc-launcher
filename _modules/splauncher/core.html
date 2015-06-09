@@ -1,0 +1,178 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>splauncher.core &mdash; splauncher 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="top" title="splauncher 0.0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body role="document">
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">splauncher 0.0.1 documentation</a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for splauncher.core</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&quot;John Kirkham &lt;kirkhamj@janelia.hhmi.org&gt;&quot;</span>
+<span class="n">__date__</span> <span class="o">=</span> <span class="s">&quot;$May 18, 2015 16:52:18 EDT$&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+
+<span class="n">drmaa_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">drmaa</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c"># python-drmaa is not installed.</span>
+    <span class="n">drmaa_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+        <span class="s">&quot;Was not able to import drmaa. &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;If this is meant to be run using the OpenGrid submission &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;system, then drmaa needs to be installed via pip or &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;easy_install.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span>
+<span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+    <span class="c"># The drmaa library was not specified, but python-drmaa is installed.</span>
+    <span class="n">drmaa_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+        <span class="s">&quot;Was able to import drmaa. &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;However, the drmaa library could not be found. Please &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;either specify the location of libdrmaa.so using the &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;DRMAA_LIBRARY_PATH environment variable or disable/remove &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;use_drmaa from the config file.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../splauncher.core.html#splauncher.core.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">):</span>
+    <span class="n">job_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+    <span class="n">job_time_str</span> <span class="o">=</span> <span class="n">job_time</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">,</span> <span class="s">&quot;.&quot;</span><span class="p">)</span>
+    <span class="n">job_name</span> <span class="o">=</span> <span class="s">&quot;splaunch_&quot;</span> <span class="o">+</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="s">&quot;-&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;_&quot;</span> <span class="o">+</span> <span class="n">job_time_str</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">drmaa</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+
+    <span class="n">session_name</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">contact</span>
+
+    <span class="n">job_template</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">createJobTemplate</span><span class="p">()</span>
+    <span class="n">job_template</span><span class="o">.</span><span class="n">jobName</span> <span class="o">=</span> <span class="n">job_name</span>
+    <span class="n">job_template</span><span class="o">.</span><span class="n">remoteCommand</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">job_template</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="n">job_template</span><span class="o">.</span><span class="n">jobEnvironment</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span>
+    <span class="n">job_template</span><span class="o">.</span><span class="n">inputPath</span> <span class="o">=</span> <span class="s">&quot;localhost:&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">devnull</span>
+    <span class="n">job_template</span><span class="o">.</span><span class="n">outputPath</span> <span class="o">=</span> <span class="s">&quot;localhost:&quot;</span> <span class="o">+</span> <span class="n">job_name</span> <span class="o">+</span> <span class="s">&quot;.out&quot;</span>
+    <span class="n">job_template</span><span class="o">.</span><span class="n">errorPath</span> <span class="o">=</span> <span class="s">&quot;localhost:&quot;</span> <span class="o">+</span> <span class="n">job_name</span> <span class="o">+</span> <span class="s">&quot;.err&quot;</span>
+    <span class="n">job_template</span><span class="o">.</span><span class="n">workingDirectory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="n">job_template</span><span class="o">.</span><span class="n">nativeSpecification</span> <span class="o">=</span> <span class="s">&quot;-pe batch &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">process_id</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">runJob</span><span class="p">(</span><span class="n">job_template</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">deleteJobTemplate</span><span class="p">(</span><span class="n">job_template</span><span class="p">)</span>
+
+    <span class="n">s</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+    <span class="k">print</span><span class="p">(</span>
+        <span class="s">&quot;From context </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s"> launched job </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s"> with process ID </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">session_name</span><span class="p">,</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">process_id</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">splauncher 0.0.1 documentation</a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, John Kirkham &lt;kirkhamj@janelia.hhmi.org&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

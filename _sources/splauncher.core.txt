@@ -1,0 +1,7 @@
+splauncher.core module
+======================
+
+.. automodule:: splauncher.core
+    :members:
+    :undoc-members:
+    :show-inheritance:
