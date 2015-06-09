@@ -50,7 +50,7 @@ way (as seen below).
    :target: https://coveralls.io/r/jakirkham/splauncher?branch=master
 .. |Code Health| image:: https://landscape.io/github/jakirkham/splauncher/master/landscape.svg?style=flat
    :target: https://landscape.io/github/jakirkham/splauncher/master
-.. |License| image:: http://img.shields.io/badge/license-BSD-3-Clause-blue.svg
+.. |License| image:: https://img.shields.io/badge/license-BSD%203--Clause-blue.svg
    :target: http://opensource.org/licenses/BSD-3-Clause
 .. |Documentation| image:: https://img.shields.io/badge/license-BSD%203--Clause-blue.svg
    :target: http://jakirkham.github.io/splauncher/
