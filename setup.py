@@ -83,6 +83,13 @@ elif sys.argv[1] == "clean":
             shutil.rmtree("build/sphinx")
         else:
             print("'build/sphinx' does not exist -- can't clean it")
+elif sys.argv[1] == "develop":
+    if (len(sys.argv) > 2) and (sys.argv[2] in ["-u", "--uninstall"]):
+        if os.path.exists("splauncher.egg-info"):
+            print("removing 'splauncher.egg-info'")
+            shutil.rmtree("splauncher.egg-info")
+        else:
+            print("'splauncher.egg-info' does not exist -- can't clean it")
 
 setup(
     name="splauncher",
