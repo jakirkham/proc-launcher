@@ -1,4 +1,4 @@
-|Build Status| |Coverage Status| |Code Health| |License| |Documentation| |Binstar Release|
+|Travis Build Status| |Coverage Status| |Code Health| |License| |Documentation| |Binstar Release|
 
 --------------
 
@@ -44,7 +44,7 @@ way (as seen below).
     python setup.py install
 
 
-.. |Build Status| image:: https://travis-ci.org/jakirkham/splauncher.svg?branch=master
+.. |Travis Build Status| image:: https://travis-ci.org/jakirkham/splauncher.svg?branch=master
    :target: https://travis-ci.org/jakirkham/splauncher
 .. |Coverage Status| image:: https://coveralls.io/repos/jakirkham/splauncher/badge.svg?branch=master
    :target: https://coveralls.io/r/jakirkham/splauncher?branch=master
