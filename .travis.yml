@@ -27,8 +27,8 @@ install:
    - echo $VERSION
    - python setup.py bdist_conda
    # Setup environment for splauncher and install it with all dependencies.
-   - conda create -n splauncher-env python=$TRAVIS_PYTHON_VERSION
-   - source activate splauncher-env
+   - conda create -n splauncherenv python=$TRAVIS_PYTHON_VERSION
+   - source activate splauncherenv
    - conda install --use-local splauncher==$VERSION
    # Install DRMAA with Python support.
    - .travis_scripts/install_sge.sh
