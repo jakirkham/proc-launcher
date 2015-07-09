@@ -54,5 +54,5 @@ way (as seen below).
    :target: http://opensource.org/licenses/BSD-3-Clause
 .. |Documentation| image:: https://img.shields.io/badge/docs-current-9F21E9.svg
    :target: http://jakirkham.github.io/splauncher/
-.. |Binstar Release| image:: https://binstar.org/jakirkham/splauncher/badges/version.svg
-   :target: https://binstar.org/jakirkham/splauncher
+.. |Binstar Release| image:: https://anaconda.org/jakirkham/splauncher/badges/version.svg
+   :target: https://anaconda.org/jakirkham/splauncher
