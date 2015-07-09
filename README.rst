@@ -1,4 +1,4 @@
-|Travis Build Status| |Coverage Status| |Code Health| |License| |Documentation| |Binstar Release|
+|Travis Build Status| |Wercker Build Status| |Coverage Status| |Code Health| |License| |Documentation| |Binstar Release|
 
 --------------
 
@@ -46,6 +46,8 @@ way (as seen below).
 
 .. |Travis Build Status| image:: https://travis-ci.org/jakirkham/splauncher.svg?branch=master
    :target: https://travis-ci.org/jakirkham/splauncher
+.. |Wercker Build Status| image:: https://app.wercker.com/status/247fda859ed4812b68491a4fa5839876/s/master
+   :target: https://app.wercker.com/project/bykey/247fda859ed4812b68491a4fa5839876
 .. |Coverage Status| image:: https://coveralls.io/repos/jakirkham/splauncher/badge.svg?branch=master
    :target: https://coveralls.io/r/jakirkham/splauncher?branch=master
 .. |Code Health| image:: https://landscape.io/github/jakirkham/splauncher/master/landscape.svg?style=flat
