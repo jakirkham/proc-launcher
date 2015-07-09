@@ -72,8 +72,8 @@ after_success:
    - git pull origin gh-pages
    - git branch -v
    # Save important git files.
-   - mv .git ../splauncher-git-docs
-   - mv .nojekyll ../splauncher-git-docs
+   - mv .git ../splauncher-git-docs/
+   - mv .nojekyll ../splauncher-git-docs/
    # Replace old documentation with new documentation.
    - rm -rf * .*
    - mv ../splauncher-git-docs/.nojekyll .
