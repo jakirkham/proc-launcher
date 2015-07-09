@@ -15,10 +15,11 @@ install:
    - bash miniconda.sh -b -p $HOME/miniconda
    - export PATH="$HOME/miniconda/bin:$PATH"
    - conda config --set always_yes yes
+   - conda config --set show_channel_urls True
    - conda config --add channels http://conda.binstar.org/jakirkham
    - source activate root
    # Install basic conda dependencies.
-   - conda update conda
+   - conda update --all
    - conda install conda-build
    # Build the conda package for splauncher.
    - cd $TRAVIS_REPO_SLUG
@@ -26,27 +27,26 @@ install:
    - echo $VERSION
    - python setup.py bdist_conda
    # Setup environment for splauncher and install it with all dependencies.
-   - conda create -n splauncher-env python=$TRAVIS_PYTHON_VERSION
-   - source activate splauncher-env
-   - conda install --use-local splauncher==$VERSION
+   - conda create --use-local -n splauncherenv python=$TRAVIS_PYTHON_VERSION splauncher==$VERSION
+   - source activate splauncherenv
    # Install DRMAA with Python support.
    - .travis_scripts/install_sge.sh
    - export SGE_ROOT=/var/lib/gridengine
    - export SGE_CELL=default
    - export DRMAA_LIBRARY_PATH=/usr/lib/libdrmaa.so.1.0
-   - pip install drmaa
+   - conda install drmaa
    # Install sphinx 1.3 and friends to build documentation.
+   - conda install "sphinx>=1.3,<2"
+   - conda install cloud_sptheme
    # Install coverage and coveralls to generate and submit test coverage results for coveralls.io.
    # Also, install docstring-coverage to get information about documentation coverage.
-   - pip install "sphinx>=1.3,<2"
-   - pip install cloud_sptheme
-   - pip install nose-timer
-   - pip install coverage
-   - pip install docstring-coverage
-   - pip install python-coveralls
+   - conda install nose-timer
+   - conda install coverage
+   - conda install docstring-coverage
+   - conda install python-coveralls
    # Clean up downloads as there are quite a few and they waste space/memory.
    - sudo apt-get clean
-   - conda clean -t
+   - conda clean -tipsy
    - rm -rfv $HOME/.cache/pip
 script:
    # Run tests. Skip 3D tests as they take too long (~1hr).
@@ -72,8 +72,8 @@ after_success:
    - git pull origin gh-pages
    - git branch -v
    # Save important git files.
-   - mv .git ../splauncher-git-docs
-   - mv .nojekyll ../splauncher-git-docs
+   - mv .git ../splauncher-git-docs/
+   - mv .nojekyll ../splauncher-git-docs/
    # Replace old documentation with new documentation.
    - rm -rf * .*
    - mv ../splauncher-git-docs/.nojekyll .
@@ -94,6 +94,9 @@ after_success:
    - conda convert -p osx-64 linux-64/splauncher*
    - binstar -t ${BS_TOKEN} upload linux-64/splauncher*
    - binstar -t ${BS_TOKEN} upload osx-64/splauncher*
+notifications:
+  email: False
+  webhooks: https://api.kato.im/rooms/a034ff5e64192b71f4451ac7d7e0c5ba5ab46f0f5ebd60f2af5dc5edc3b6dc7a/travis
 env:
    global:
        secure: "PhXWl6uEnEEmxLTUEYZtBa50PO4tbceoJ8ZoQurZD7bh7IPMOhqM8dlFiwCltVDmLhCp++X1bGX+YdRb7+oSkJEocu5tZ0fsXuJDbhmBR5JUZq1MKjjvAbfAIhwYagjw6ZHED8P87Ks7rPR1RzcXVfYyKogtqJp8T830BraGVGTUQB3VFSuXIdmKiOJpfEaAtK8em3OoPIUolTlm8+7u/k1e293zooYAJ3WpY3CQnWO9OvqgYPyIIaHyR5VDMWL7MONAegqaMWBloodrjo+duP7uv3Q5bNE0qnyq+cDJs67YMHznoLz5lG/k2qhXD35v/uUnbu5HobSFg5zHpvzdBO9niw/MAG68qoxhlpHF554fWaKi8Y9MPpjb5H39WPaDjwwZkXK4GyaqA7W8z9EUmIBmJP7O6z2thcjBzuYdb8WsbPNxd8Od5cLXbmd9XdESHaMZ22pgLfhDns66wmqlvxYnxbkWqLMrLidHZsJ+tcGUqmkvSGq45f9K44/N/wzzo0BqHrvLGhJTEqJX/RDsFWDd8T9+qCqGadugQl4Jtq9Rgyprqvxxn+Qd6B7JYrDJH1GU4Sl1/tfnxFGXikoVJ07SXlrBx7FJV1XvkDIQuboUEtIHOUTbqkcMxgs8AhljxAbxj5iU76x+Q3U2ONBUhRRO67w4N22nnMHQ5sV8fyo="
