@@ -52,7 +52,7 @@ build:
                 docstring-coverage splauncher | tee .docstring-coverage
 
     after-steps:
-        - wercker/email-notify:
+        - jakirkham/email-notify:
             from: alerts@wercker.com
             to: a64b0b4d84994fec4dd17e26c9dcc584db180713f7bf1f627cd5b6b4ba2c6e4@apps.kato.im
             username: $USER
