@@ -15,12 +15,6 @@ from setuptools import setup, find_packages
 import versioneer
 
 
-versioneer.VCS = "git"
-versioneer.versionfile_source = "splauncher/_version.py"
-versioneer.versionfile_build = None
-versioneer.tag_prefix = "v"
-versioneer.parentdir_prefix = "splauncher-"
-
 build_requires = []
 install_requires = []
 tests_require = ["nose"]
