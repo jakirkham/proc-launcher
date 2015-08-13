@@ -29,3 +29,8 @@ MANIFEST
 build/
 dist/
 splauncher.egg-info/
+
+# Ignore Wercker CI generated files.
+_builds/
+_projects/
+_steps/
