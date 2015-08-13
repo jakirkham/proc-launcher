@@ -22,6 +22,7 @@ docs/_build
 docs/*.rst
 !docs/index.rst
 !docs/readme.rst
+.docstring-coverage
 
 # Ignore build generated files.
 MANIFEST
