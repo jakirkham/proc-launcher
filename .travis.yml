@@ -94,8 +94,8 @@ after_success:
    - conda install anaconda-client
    - cd $HOME/miniconda/conda-bld/
    - conda convert -p osx-64 linux-64/splauncher*
-   - conda server -t ${BS_TOKEN} upload linux-64/splauncher*
-   - conda server -t ${BS_TOKEN} upload osx-64/splauncher*
+   - conda server -t ${AS_TOKEN} upload linux-64/splauncher*
+   - conda server -t ${AS_TOKEN} upload osx-64/splauncher*
 notifications:
   email: False
   webhooks: https://api.kato.im/rooms/a034ff5e64192b71f4451ac7d7e0c5ba5ab46f0f5ebd60f2af5dc5edc3b6dc7a/travis
