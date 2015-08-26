@@ -94,13 +94,10 @@ after_success:
    - conda install anaconda-client
    - cd $HOME/miniconda/conda-bld/
    - conda convert -p osx-64 linux-64/splauncher*
-   - conda server -t ${BS_TOKEN} upload linux-64/splauncher*
-   - conda server -t ${BS_TOKEN} upload osx-64/splauncher*
+   - conda server -t ${AS_TOKEN} upload linux-64/splauncher*
+   - conda server -t ${AS_TOKEN} upload osx-64/splauncher*
 notifications:
   email: False
   webhooks: https://api.kato.im/rooms/a034ff5e64192b71f4451ac7d7e0c5ba5ab46f0f5ebd60f2af5dc5edc3b6dc7a/travis
-env:
-   global:
-       secure: "PhXWl6uEnEEmxLTUEYZtBa50PO4tbceoJ8ZoQurZD7bh7IPMOhqM8dlFiwCltVDmLhCp++X1bGX+YdRb7+oSkJEocu5tZ0fsXuJDbhmBR5JUZq1MKjjvAbfAIhwYagjw6ZHED8P87Ks7rPR1RzcXVfYyKogtqJp8T830BraGVGTUQB3VFSuXIdmKiOJpfEaAtK8em3OoPIUolTlm8+7u/k1e293zooYAJ3WpY3CQnWO9OvqgYPyIIaHyR5VDMWL7MONAegqaMWBloodrjo+duP7uv3Q5bNE0qnyq+cDJs67YMHznoLz5lG/k2qhXD35v/uUnbu5HobSFg5zHpvzdBO9niw/MAG68qoxhlpHF554fWaKi8Y9MPpjb5H39WPaDjwwZkXK4GyaqA7W8z9EUmIBmJP7O6z2thcjBzuYdb8WsbPNxd8Od5cLXbmd9XdESHaMZ22pgLfhDns66wmqlvxYnxbkWqLMrLidHZsJ+tcGUqmkvSGq45f9K44/N/wzzo0BqHrvLGhJTEqJX/RDsFWDd8T9+qCqGadugQl4Jtq9Rgyprqvxxn+Qd6B7JYrDJH1GU4Sl1/tfnxFGXikoVJ07SXlrBx7FJV1XvkDIQuboUEtIHOUTbqkcMxgs8AhljxAbxj5iU76x+Q3U2ONBUhRRO67w4N22nnMHQ5sV8fyo="
 # Use container format for TravisCI to avoid termination due to insufficient resources.
 #sudo: false
