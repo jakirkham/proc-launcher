@@ -98,6 +98,5 @@ after_success:
    - conda server -t ${AS_TOKEN} upload osx-64/splauncher*
 notifications:
   email: False
-  webhooks: https://api.kato.im/rooms/a034ff5e64192b71f4451ac7d7e0c5ba5ab46f0f5ebd60f2af5dc5edc3b6dc7a/travis
 # Use container format for TravisCI to avoid termination due to insufficient resources.
 #sudo: false
