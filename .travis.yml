@@ -97,6 +97,7 @@ after_success:
    - conda server -t ${AS_TOKEN} upload linux-64/splauncher*
    - conda server -t ${AS_TOKEN} upload osx-64/splauncher*
 notifications:
-  email: False
+  email:
+    - $TO_EMAIL
 # Use container format for TravisCI to avoid termination due to insufficient resources.
 #sudo: false
