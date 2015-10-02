@@ -48,8 +48,8 @@ way (as seen below).
    :target: https://travis-ci.org/jakirkham/splauncher
 .. |Wercker Build Status| image:: https://app.wercker.com/status/247fda859ed4812b68491a4fa5839876/s/master
    :target: https://app.wercker.com/project/bykey/247fda859ed4812b68491a4fa5839876
-.. |Coverage Status| image:: https://coveralls.io/repos/jakirkham/splauncher/badge.svg?branch=master
-   :target: https://coveralls.io/r/jakirkham/splauncher?branch=master
+.. |Coverage Status| image:: https://coveralls.io/repos/jakirkham/splauncher/badge.svg?branch=master&service=github
+   :target: https://coveralls.io/github/jakirkham/splauncher?branch=master
 .. |Code Health| image:: https://landscape.io/github/jakirkham/splauncher/master/landscape.svg?style=flat
    :target: https://landscape.io/github/jakirkham/splauncher/master
 .. |License| image:: https://img.shields.io/badge/license-BSD%203--Clause-blue.svg
