@@ -1,8 +1,7 @@
 
-File splauncher/core.py
+File splauncher/__init__.py
  - No module dostring!
- - No docstring for main!
- Needed: 2; Exist: 0; Missing: 2; Coverage: 0.0%
+ Needed: 1; Exist: 0; Missing: 1; Coverage: 0.0%
 
 File splauncher/_version.py
  - No module dostring!
@@ -28,9 +27,10 @@ File splauncher/_version.py
  - No docstring for get_versions!
  Needed: 21; Exist: 0; Missing: 21; Coverage: 0.0%
 
-File splauncher/__init__.py
+File splauncher/core.py
  - No module dostring!
- Needed: 1; Exist: 0; Missing: 1; Coverage: 0.0%
+ - No docstring for main!
+ Needed: 2; Exist: 0; Missing: 2; Coverage: 0.0%
 
 
 Overall statistics for 3 files:
