@@ -1,12 +1,11 @@
-language: python
-python:
-   - "2.7"
+language: generic
+env:
+   - PYTHON_VERSION="2.7"
 before_install:
    # Get the tag if it wasn't provided. Travis doesn't provide this if it isn't a tagged build.
    - if [ -z $TRAVIS_TAG ]; then TRAVIS_TAG=`git tag --contains` ; fi
    - echo $TRAVIS_TAG
    # Move out of git directory to build root.
-   - deactivate
    - cd ../..
    - pwd
    # Fix the hostname to have fewer characters for SGE.
@@ -16,15 +15,19 @@ before_install:
    - cat /etc/hosts # optionally check the content *after*
 install:
    # Download and configure conda.
-   - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+   - wget http://repo.continuum.io/miniconda/Miniconda`echo ${PYTHON_VERSION:0:1}`-latest-Linux-x86_64.sh -O miniconda.sh
    - bash miniconda.sh -b -p $HOME/miniconda
    - export PATH="$HOME/miniconda/bin:$PATH"
    - conda config --set always_yes yes
    - conda config --set show_channel_urls True
    - conda config --add channels jakirkham
    - source activate root
-   # Install basic conda dependencies.
    - conda update --all
+   # Fix root environment to have the correct Python version.
+   - touch $HOME/miniconda/conda-meta/pinned
+   - echo "python ${PYTHON_VERSION}.*" >> $HOME/miniconda/conda-meta/pinned
+   - conda install python=$PYTHON_VERSION
+   # Install basic conda dependencies.
    - conda install conda-build
    # Build the conda package for splauncher.
    - cd $TRAVIS_REPO_SLUG
@@ -32,7 +35,7 @@ install:
    - echo $VERSION
    - python setup.py bdist_conda
    # Setup environment for splauncher and install it with all dependencies.
-   - conda create --use-local -n testenv python=$TRAVIS_PYTHON_VERSION splauncher==$VERSION
+   - conda create --use-local -n testenv python=$PYTHON_VERSION splauncher==$VERSION
    - source activate testenv
    # Install DRMAA with Python support.
    - .travis_scripts/install_sge.sh
