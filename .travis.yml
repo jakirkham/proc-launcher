@@ -1,12 +1,11 @@
-language: python
-python:
-   - "2.7"
+language: generic
+env:
+   - PYTHON_VERSION="2.7"
 before_install:
    # Get the tag if it wasn't provided. Travis doesn't provide this if it isn't a tagged build.
    - if [ -z $TRAVIS_TAG ]; then TRAVIS_TAG=`git tag --contains` ; fi
    - echo $TRAVIS_TAG
    # Move out of git directory to build root.
-   - deactivate
    - cd ../..
    - pwd
    # Fix the hostname to have fewer characters for SGE.
@@ -32,7 +31,7 @@ install:
    - echo $VERSION
    - python setup.py bdist_conda
    # Setup environment for splauncher and install it with all dependencies.
-   - conda create --use-local -n testenv python=$TRAVIS_PYTHON_VERSION splauncher==$VERSION
+   - conda create --use-local -n testenv python=$PYTHON_VERSION splauncher==$VERSION
    - source activate testenv
    # Install DRMAA with Python support.
    - .travis_scripts/install_sge.sh
