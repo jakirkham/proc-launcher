@@ -9,8 +9,8 @@ build:
         - script:
             name: Build Conda Package.
             code: |-
-                conda config --add channels conda-forge
                 conda config --set show_channel_urls True
+                conda config --add channels conda-forge
                 source activate root
                 conda update -y --all
                 python setup.py bdist_conda
