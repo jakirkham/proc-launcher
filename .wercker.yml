@@ -12,6 +12,7 @@ build:
                 conda config --set show_channel_urls True
                 conda config --add channels conda-forge
                 source activate root
+                echo "conda-build 1.*" >> /opt/conda/conda-meta/pinned
                 conda update -y --all
                 python setup.py bdist_conda
 
