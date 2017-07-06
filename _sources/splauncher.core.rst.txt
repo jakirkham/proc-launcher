@@ -1,5 +1,5 @@
-splauncher.core module
-======================
+splauncher\.core module
+=======================
 
 .. automodule:: splauncher.core
     :members:
