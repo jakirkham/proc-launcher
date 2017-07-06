@@ -1,4 +1,4 @@
-|Travis Build Status| |Wercker Build Status| |Coverage Status| |Code Health| |License| |Documentation| |Anaconda Release|
+|Travis Build Status| |Wercker Build Status| |Coverage Status| |Code Health| |License| |Documentation| |Read the Docs| |Anaconda Release|
 
 --------------
 
@@ -56,5 +56,7 @@ way (as seen below).
    :target: http://opensource.org/licenses/BSD-3-Clause
 .. |Documentation| image:: https://img.shields.io/badge/docs-current-9F21E9.svg
    :target: http://jakirkham.github.io/splauncher/
+.. |Read the Docs| image:: https://readthedocs.org/projects/splauncher/badge/?version=latest
+   :target: https://splauncher.readthedocs.io/en/latest/?badge=latest
 .. |Anaconda Release| image:: https://anaconda.org/conda-forge/splauncher/badges/version.svg
    :target: https://anaconda.org/conda-forge/splauncher
