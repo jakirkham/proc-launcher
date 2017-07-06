@@ -4,11 +4,9 @@ addons:
        - travis
    hostname: travis
 env:
-   - PYTHON_VERSION="2.7" DEPLOY_DOCS=true
+   - PYTHON_VERSION="2.7"
    - PYTHON_VERSION="3.5"
 before_install:
-   # If `$DEPLOY_DOCS` is unset, make it `false` by default.
-   - if [ -z $DEPLOY_DOCS ]; then DEPLOY_DOCS=false; fi
    # Get the tag if it wasn't provided. Travis doesn't provide this if it isn't a tagged build.
    - if [ -z $TRAVIS_TAG ]; then TRAVIS_TAG=`git tag --contains` ; fi
    - echo $TRAVIS_TAG
@@ -69,42 +67,6 @@ script:
 after_success:
    # Submit results to coveralls.io.
    - coveralls
-   # Check to see if this is the right branch to build documentation from.
-   - if [ $TRAVIS_PULL_REQUEST != "false" ] || [ $TRAVIS_REPO_SLUG != "jakirkham/splauncher" ] || [ $TRAVIS_BRANCH != "master" ]; then exit 0 ; fi
-   # Save documentation and documentation coverage statistics.
-   - mv build/sphinx/html ../splauncher-git-docs
-   - mv .docstring-coverage ../splauncher-git-docs
-   # Update credentials
-   - git config --global user.name "Travis CI"
-   - git config --global user.email "noreply@travis-ci.org"
-   # Get current pages. Unfortunately, `git fetch` does not work here.
-   - git remote set-url origin "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}"
-   - git checkout --orphan gh-pages
-   - git pull origin gh-pages
-   - git branch -v
-   # Save important git files.
-   - mv .git ../splauncher-git-docs/
-   - mv .nojekyll ../splauncher-git-docs/
-   # Replace old documentation with new documentation.
-   - rm -rf * .*
-   - mv ../splauncher-git-docs/.nojekyll .
-   - mv ../splauncher-git-docs/.git .
-   - mv ../splauncher-git-docs/.docstring-coverage .
-   - mv ../splauncher-git-docs/* .
-   - rm -rf ../splauncher-git-docs
-   # Commit changes and push. Reference commit used and tag if relevant.
-   - git add -A
-   - if [ -z $TRAVIS_TAG ]; then git commit -m "Rebuilt documentation for commit (${TRAVIS_COMMIT})." --allow-empty ; else git commit -m "Rebuilt documentation for commit (${TRAVIS_COMMIT}) and tag (${TRAVIS_TAG})." --allow-empty ; fi
-   - $DEPLOY_DOCS && (git push -q origin gh-pages > /dev/null 2>&1; echo $?)
-   # Check to see if this is a release. If so, create and upload binaries.
-   - if [ -z $TRAVIS_TAG ]; then exit 0 ; fi
-   - git checkout $TRAVIS_TAG
-   - source activate root
-   - conda install anaconda-client
-   - cd $HOME/miniconda/conda-bld/
-   - conda convert -p osx-64 linux-64/splauncher*
-   - conda server -t ${AS_TOKEN} upload linux-64/splauncher*
-   - conda server -t ${AS_TOKEN} upload osx-64/splauncher*
 notifications:
   email:
     - $TO_EMAIL
