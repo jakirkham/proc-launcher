@@ -35,6 +35,7 @@ build:
         - script:
             name: Install dependencies for profiling and monitoring coverage.
             code: |-
+                echo "nose-timer 0.6.0" >> "$(conda info --root)/envs/testenv/conda-meta/pinned"
                 conda install -y nose-timer
                 conda install -y coverage
                 conda install -y docstring-coverage
