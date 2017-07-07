@@ -89,7 +89,7 @@ setup(
     version=versioneer.get_version(),
     description="A simple subprocess launcher with optional DRMAA support.",
     url="https://github.com/jakirkham/splauncher",
-    license="BSD",
+    license="BSD 3-Clause",
     author="John Kirkham",
     author_email="kirkhamj@janelia.hhmi.org",
     scripts=glob("bin/*"),
