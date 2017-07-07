@@ -1,4 +1,5 @@
 language: generic
+sudo: true
 addons:
    hosts:
        - travis
@@ -71,5 +72,3 @@ after_success:
 notifications:
   email:
     - $TO_EMAIL
-# Use container format for TravisCI to avoid termination due to insufficient resources.
-#sudo: false
