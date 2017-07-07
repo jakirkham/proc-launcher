@@ -1,1 +1,3 @@
 include LICENSE.txt
+include versioneer.py
+include splauncher/_version.py
