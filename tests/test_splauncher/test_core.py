@@ -90,3 +90,8 @@ class TestCore(unittest.TestCase):
             s = f.read().strip()
             print("File \"%s\" contains \"%s\"." % (f.name, s))
             assert s == ""
+
+
+if __name__ == '__main__':
+    import sys
+    sys.exit(unittest.main())
