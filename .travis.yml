@@ -49,7 +49,6 @@ install:
    # Install coverage and coveralls to generate and submit test coverage results for coveralls.io.
    # Also, install docstring-coverage to get information about documentation coverage.
    - conda install nose-timer
-   - echo "coverage 3.*" >> $HOME/miniconda/envs/testenv/conda-meta/pinned
    - conda install coverage
    - conda install docstring-coverage || true
    - conda install python-coveralls
@@ -58,6 +57,8 @@ install:
    - conda clean -tipsy
    - rm -rfv $HOME/.cache/pip
 script:
+   # Clear old coverage.
+   - coverage erase
    # Run tests. Skip 3D tests as they take too long (~1hr).
    - python setup.py nosetests --with-timer
    # Build documentation.
