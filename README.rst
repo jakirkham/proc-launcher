@@ -1,4 +1,4 @@
-|Travis| |Wercker| |Coverage| |Health| |License| |Documentation| |Anaconda|
+|Travis| |Wercker| |Coverage| |Health| |License| |Documentation| |conda-forge|
 
 --------------
 
@@ -56,5 +56,5 @@ way (as seen below).
    :target: ./LICENSE.txt
 .. |Documentation| image:: https://readthedocs.org/projects/splauncher/badge/?version=latest
    :target: https://splauncher.readthedocs.io/en/latest/?badge=latest
-.. |Anaconda| image:: https://anaconda.org/conda-forge/splauncher/badges/version.svg
+.. |conda-forge| image:: https://anaconda.org/conda-forge/splauncher/badges/version.svg
    :target: https://anaconda.org/conda-forge/splauncher
