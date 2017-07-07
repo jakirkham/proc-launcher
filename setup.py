@@ -105,6 +105,7 @@ setup(
     install_requires=install_requires,
     tests_require=tests_require,
     test_suite="tests",
+    keywords="splauncher",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
