@@ -105,5 +105,11 @@ setup(
     install_requires=install_requires,
     tests_require=tests_require,
     test_suite="tests",
+    classifiers=[
+        "Development Status :: 2 - Pre-Alpha",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: BSD License",
+        "Natural Language :: English",
+    ],
     zip_safe=True
 )
