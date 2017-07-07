@@ -17,7 +17,7 @@ import versioneer
 
 build_requires = []
 install_requires = []
-tests_require = ["nose"]
+tests_require = []
 sphinx_build_pdf = False
 if len(sys.argv) == 1:
     pass
@@ -99,6 +99,6 @@ setup(
     build_requires=build_requires,
     install_requires=install_requires,
     tests_require=tests_require,
-    test_suite="nose.collector",
+    test_suite="tests",
     zip_safe=True
 )
