@@ -63,7 +63,7 @@ script:
    # Build documentation.
    - python setup.py build_sphinx
    # Get info on docstring coverage.
-   - (hash docstring-coverage && docstring-coverage nanshe | tee .docstring-coverage) || true
+   - (hash docstring-coverage && docstring-coverage splauncher | tee .docstring-coverage) || true
 after_success:
    # Submit results to coveralls.io.
    - coveralls
