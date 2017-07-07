@@ -48,6 +48,7 @@ install:
    - conda install cloud_sptheme
    # Install coverage and coveralls to generate and submit test coverage results for coveralls.io.
    # Also, install docstring-coverage to get information about documentation coverage.
+   - echo "nose-timer 0.6.0" >> $HOME/miniconda/envs/testenv/conda-meta/pinned
    - conda install nose-timer
    - conda install coverage
    - conda install docstring-coverage || true
