@@ -48,6 +48,7 @@ build:
         - script:
             name: Test code.
             code: |-
+                coverage erase
                 python setup.py nosetests --with-timer
 
         - script:

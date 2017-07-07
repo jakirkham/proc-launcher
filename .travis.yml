@@ -57,6 +57,8 @@ install:
    - conda clean -tipsy
    - rm -rfv $HOME/.cache/pip
 script:
+   # Clear old coverage.
+   - coverage erase
    # Run tests. Skip 3D tests as they take too long (~1hr).
    - python setup.py nosetests --with-timer
    # Build documentation.
