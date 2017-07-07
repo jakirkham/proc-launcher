@@ -19,14 +19,12 @@ command line call and time of launch, and finally automatically reroutes
 Prerequisites
 -------------
 
-Installation requires |setuptools|_. Testing relies on |nose|_. Documentation
-relies on |sphinx|_. Running relies upon proper installation and configuration
-of |drmaa-python|_.
+Installation and testing requires |setuptools|_. Documentation relies on
+|sphinx|_. Running relies upon proper installation and configuration of
+|drmaa-python|_.
 
 .. |drmaa-python| replace:: ``drmaa-python``
 .. _drmaa-python: https://github.com/pygridtools/drmaa-python
-.. |nose| replace:: ``nose``
-.. _nose: http://nose.readthedocs.org/en/latest/
 .. |setuptools| replace:: ``setuptools``
 .. _setuptools: http://pythonhosted.org/setuptools/
 .. |sphinx| replace:: ``sphinx``
