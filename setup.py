@@ -17,7 +17,7 @@ import versioneer
 
 build_requires = []
 install_requires = []
-tests_require = ["nose"]
+tests_require = []
 sphinx_build_pdf = False
 if len(sys.argv) == 1:
     pass
