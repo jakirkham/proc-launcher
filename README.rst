@@ -1,4 +1,4 @@
-|Travis Build Status| |Wercker Build Status| |Coverage Status| |Code Health| |License| |Documentation| |Anaconda Release|
+|conda-forge| |Documentation| |Travis| |Wercker| |Coverage| |Health| |License|
 
 --------------
 
@@ -44,17 +44,17 @@ way (as seen below).
     python setup.py install
 
 
-.. |Travis Build Status| image:: https://travis-ci.org/jakirkham/splauncher.svg?branch=master
+.. |Travis| image:: https://travis-ci.org/jakirkham/splauncher.svg?branch=master
    :target: https://travis-ci.org/jakirkham/splauncher
-.. |Wercker Build Status| image:: https://app.wercker.com/status/247fda859ed4812b68491a4fa5839876/s/master
+.. |Wercker| image:: https://app.wercker.com/status/247fda859ed4812b68491a4fa5839876/s/master
    :target: https://app.wercker.com/project/bykey/247fda859ed4812b68491a4fa5839876
-.. |Coverage Status| image:: https://coveralls.io/repos/jakirkham/splauncher/badge.svg?branch=master&service=github
+.. |Coverage| image:: https://coveralls.io/repos/jakirkham/splauncher/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/jakirkham/splauncher?branch=master
-.. |Code Health| image:: https://landscape.io/github/jakirkham/splauncher/master/landscape.svg?style=flat
+.. |Health| image:: https://landscape.io/github/jakirkham/splauncher/master/landscape.svg?style=flat
    :target: https://landscape.io/github/jakirkham/splauncher/master
 .. |License| image:: https://img.shields.io/github/license/jakirkham/splauncher.svg
    :target: ./LICENSE.txt
 .. |Documentation| image:: https://readthedocs.org/projects/splauncher/badge/?version=latest
    :target: https://splauncher.readthedocs.io/en/latest/?badge=latest
-.. |Anaconda Release| image:: https://anaconda.org/conda-forge/splauncher/badges/version.svg
+.. |conda-forge| image:: https://anaconda.org/conda-forge/splauncher/badges/version.svg
    :target: https://anaconda.org/conda-forge/splauncher
