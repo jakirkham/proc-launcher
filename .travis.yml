@@ -59,7 +59,7 @@ install:
 script:
    # Clear old coverage.
    - coverage erase
-   # Run tests. Skip 3D tests as they take too long (~1hr).
+   # Run tests.
    - python setup.py nosetests --with-timer
    # Build documentation.
    - python setup.py build_sphinx
