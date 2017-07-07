@@ -9,12 +9,13 @@ import os
 import shutil
 import tempfile
 import time
+import unittest
 
 from splauncher.core import main
 
 
-class TestCore(object):
-    def setup(self):
+class TestCore(unittest.TestCase):
+    def setUp(self):
         self.cwd = os.getcwd()
         self.tempdir = ""
         self.tempdir = tempfile.mkdtemp()
@@ -22,7 +23,7 @@ class TestCore(object):
 
         print("tempdir = \"%s\"" % self.tempdir)
 
-    def teardown(self):
+    def tearDown(self):
         os.chdir(self.cwd)
         shutil.rmtree(self.tempdir)
         self.tempdir = ""
