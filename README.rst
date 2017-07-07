@@ -1,4 +1,4 @@
-|Travis| |Wercker| |Coverage| |Health| |License| |Documentation| |conda-forge|
+|conda-forge| |Documentation| |Travis| |Wercker| |Coverage| |Health| |License|
 
 --------------
 
