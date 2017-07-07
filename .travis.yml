@@ -8,6 +8,7 @@ env:
    - PYTHON_VERSION="2.7"
    - PYTHON_VERSION="3.4"
    - PYTHON_VERSION="3.5"
+   - PYTHON_VERSION="3.6"
 before_install:
    # Get the tag if it wasn't provided. Travis doesn't provide this if it isn't a tagged build.
    - if [ -z $TRAVIS_TAG ]; then TRAVIS_TAG=`git tag --contains` ; fi
@@ -48,12 +49,11 @@ install:
    # Install sphinx and friends to build documentation.
    - conda install sphinx
    - conda install cloud_sptheme
-   # Install coverage and coveralls to generate and submit test coverage results for coveralls.io.
+   # Install coverage to generate test coverage results.
    # Also, install docstring-coverage to get information about documentation coverage.
    - conda install nose-timer
    - conda install coverage
    - conda install docstring-coverage || true
-   - conda install python-coveralls
    # Clean up downloads as there are quite a few and they waste space/memory.
    - sudo apt-get clean
    - conda clean -tipsy
@@ -68,6 +68,9 @@ script:
    # Get info on docstring coverage.
    - (hash docstring-coverage && docstring-coverage splauncher | tee .docstring-coverage) || true
 after_success:
+   # Workaround for odd coveralls behavior on Python 3.6.
+   - conda create -y -n dplenv python="3.5" python-coveralls
+   - source activate dplenv
    # Submit results to coveralls.io.
    - coveralls
 notifications:
