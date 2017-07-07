@@ -24,9 +24,7 @@ if len(sys.argv) == 1:
 elif ("--help" in sys.argv) or ("-h" in sys.argv):
     pass
 elif sys.argv[1] == "bdist_conda":
-    tests_require = [
-        "nose"
-    ]
+    pass
 elif sys.argv[1] == "build_sphinx":
     import sphinx.apidoc
 
