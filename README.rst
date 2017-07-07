@@ -1,4 +1,4 @@
-|conda-forge| |Documentation| |Travis| |Wercker| |Coverage| |Health| |License|
+|PyPI| |conda-forge| |Documentation| |Travis| |Wercker| |Coverage| |Health| |License|
 
 --------------
 
@@ -44,6 +44,8 @@ way (as seen below).
     python setup.py install
 
 
+.. |PyPI| image:: https://img.shields.io/pypi/v/splauncher.svg
+   :target: https://pypi.python.org/pypi/splauncher
 .. |Travis| image:: https://travis-ci.org/jakirkham/splauncher.svg?branch=master
    :target: https://travis-ci.org/jakirkham/splauncher
 .. |Wercker| image:: https://app.wercker.com/status/247fda859ed4812b68491a4fa5839876/s/master
