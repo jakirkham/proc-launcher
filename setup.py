@@ -15,6 +15,10 @@ from setuptools import setup, find_packages
 import versioneer
 
 
+readme = ""
+with open("README.rst") as readme_file:
+    readme = readme_file.read()
+
 build_requires = []
 install_requires = []
 tests_require = []
@@ -88,6 +92,7 @@ setup(
     name="splauncher",
     version=versioneer.get_version(),
     description="A simple subprocess launcher with optional DRMAA support.",
+    long_description=readme,
     url="https://github.com/jakirkham/splauncher",
     license="BSD 3-Clause",
     author="John Kirkham",
