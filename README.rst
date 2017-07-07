@@ -52,8 +52,8 @@ way (as seen below).
    :target: https://coveralls.io/github/jakirkham/splauncher?branch=master
 .. |Code Health| image:: https://landscape.io/github/jakirkham/splauncher/master/landscape.svg?style=flat
    :target: https://landscape.io/github/jakirkham/splauncher/master
-.. |License| image:: https://img.shields.io/badge/license-BSD%203--Clause-blue.svg
-   :target: http://opensource.org/licenses/BSD-3-Clause
+.. |License| image:: https://img.shields.io/github/license/jakirkham/splauncher.svg
+   :target: ./LICENSE.txt
 .. |Documentation| image:: https://readthedocs.org/projects/splauncher/badge/?version=latest
    :target: https://splauncher.readthedocs.io/en/latest/?badge=latest
 .. |Anaconda Release| image:: https://anaconda.org/conda-forge/splauncher/badges/version.svg
