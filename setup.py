@@ -99,6 +99,6 @@ setup(
     build_requires=build_requires,
     install_requires=install_requires,
     tests_require=tests_require,
-    test_suite="nose.collector",
+    test_suite="tests",
     zip_safe=True
 )
