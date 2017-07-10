@@ -53,7 +53,6 @@ def main(*argv):
     job_template.outputPath = "localhost:" + job_name + ".out"
     job_template.errorPath = "localhost:" + job_name + ".err"
     job_template.workingDirectory = os.getcwd()
-    job_template.nativeSpecification = "-pe batch " + str(1)
 
     process_id = s.runJob(job_template)
     s.deleteJobTemplate(job_template)
