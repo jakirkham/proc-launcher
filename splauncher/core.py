@@ -35,6 +35,8 @@ except RuntimeError:
 
 
 def main(*argv):
+    hostname = os.uname()[1]
+
     job_time = datetime.datetime.utcnow()
     job_time_str = job_time.isoformat().replace(":", ".")
     job_name = "splaunch_" + argv[1].replace("/", "-") + "_" + job_time_str
@@ -50,8 +52,8 @@ def main(*argv):
     job_template.args = argv[2:]
     job_template.jobEnvironment = os.environ
     job_template.inputPath = "localhost:" + os.devnull
-    job_template.outputPath = "localhost:" + job_name + ".out"
-    job_template.errorPath = "localhost:" + job_name + ".err"
+    job_template.outputPath = hostname + ":" + job_name + ".out"
+    job_template.errorPath = hostname + ":" + job_name + ".err"
     job_template.workingDirectory = os.getcwd()
 
     process_id = s.runJob(job_template)
